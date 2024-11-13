@@ -4,6 +4,7 @@
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 
 # install server-side packages
+# curl and wget are usually pre-installed/built-in
 sudo dnf install -y cmake\
 	automake\
 	llvm\
@@ -41,8 +42,19 @@ sudo dnf install -y flatpak\
 	obs-studio\
 	piper\
 	solaar 
+# LATEX
+# Lighter options
+# sudo dnf install -y texlive-scheme-basic
+# sudo dnf install -y texlive-scheme-medium
+sudo dnf install -y texlive-scheme-full pandoc
 
-# nodejs manager
+# R and R Studio
+sudo dnf install -y R
+sudo dnf install -y rstudio-desktop
+
+# NodeJS manager
+# Open new terminal nvm install node
+# May need to add nvm into .zshrc path if the line below was used with bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 # jvm sdk manager
@@ -69,5 +81,5 @@ sudo dnf check-update ; sudo dnf install code
 # OMZ 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# Check NVIDIA DRM
+# Check NVIDIA DRM assuming NVidia driver and packages were installed. 
 lsmod | grep -i nvidia
